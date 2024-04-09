@@ -13,6 +13,7 @@ struct node *create_node(int data)
     ptr->data = data;
     ptr->left = NULL;
     ptr->right = NULL;
+    return ptr ;
 }
 
 void preOrder(struct node*root){
