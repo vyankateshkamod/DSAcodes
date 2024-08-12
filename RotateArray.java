@@ -1,28 +1,30 @@
+//Given an array of size N. The task is to left rotate array by D elements where D<=N
+//Expected time complexity : O(N)
+//Expected Auxiliary Space : O(1)
+
+import java.util.Arrays;
+
 public class RotateArray {
     public static void main(String[] args) {
-        rotateArray(new int[] { 1, 2, 3, 4, 5, 6, 7 }, 4);
+        int[] arr = { 1, 2, 3, 4, 5 };
+        leftRotate(arr, 5, 2);
+
+        System.out.println(Arrays.toString(arr));
     }
 
-    private static void rotateArray(int[] arr, int D) {
-        int[] arrA = new int[D+1];
-        int[] arrB = new int[9];
-        for (int i = 0; i <= arr.length-1 ; i++) {
-            if (i == D) {
-                for (int j = 0; j <= D; j++) {
-                    arrA[j] = arr[j];
-                }
-                for (int j = D+1; j <= arr.length-1; j++) {
-                    for(int l =0 ; l<arr.length ; l++){
-                        arrB[l] = arr[j];
-                    }
-                }
-                int[] arrRotate = new int[arrB.length + arrA.length];
-                System.arraycopy(arrB, 0, arrRotate, 0, arrB.length);
-                System.arraycopy(arrA, 0, arrRotate, arrB.length, arrA.length);
-                for (int k : arrRotate) {
-                    System.out.print(k + " ");
-                }
-            }
+    private static void leftRotate(int[] arr, int n, int d) {
+        reverse(arr, 0, d - 1);
+        reverse(arr, d, n - 1);
+        reverse(arr, 0, n - 1);
+    }
+
+    private static void reverse(int[] arr, int i, int j) {
+        while (i <= j) {
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
         }
     }
 }
