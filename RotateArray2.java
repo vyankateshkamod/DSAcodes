@@ -1,3 +1,7 @@
+//Given an array of size N. The task is to left rotate array by D elements where D<=N
+//Expected time complexity : O(N)
+//Expected Auxiliary Space : O(1)
+
 public class RotateArray2 {
 
     public static void main(String[] args) {
