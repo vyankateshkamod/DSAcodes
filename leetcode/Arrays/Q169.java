@@ -10,10 +10,11 @@ public class Q169 {
     // TC : O(n)
     // SC : O(1)
     public static int majorityElement(int[] nums) {
-        int major = nums.length / 2;
-        int cnt = 0 ;
-        int e = -1 ;
-        for(int i = 0 ; i<nums.length ;i++){
+       
+        int cnt = 1 ;
+        int e = nums[0] ;
+
+        for(int i = 1 ; i<nums.length ;i++){
             
             if(cnt == 0){
                 cnt = 1 ;
@@ -28,20 +29,7 @@ public class Q169 {
                 cnt-- ;
             }
         }
-
-        int cnt2 = 0 ;
-        for(int i : nums){
-            if(i == e){
-                cnt2++ ;
-            }
-        }
-
-        if(cnt2 > major){
-            return e ;
-        }
-
-        return -1 ;
-
+        return e ;
     }
 
     //Better
