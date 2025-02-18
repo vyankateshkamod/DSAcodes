@@ -1,9 +1,12 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class SubarraywithgivenXOR {
     public static void main(String[] args) {
-
+        ArrayList<Integer> list = new ArrayList<>(Arrays.asList(4,2,2,6,4)) ;
+        System.out.println(solve(list, 6));
+        System.out.println(solve2(new int[] {4,2,2,6,4}, 6));
     }
 
 
@@ -38,7 +41,7 @@ public class SubarraywithgivenXOR {
 
     //Better
     // TC : n2
-    public int solve(int[] A, int B) {
+    public static int solve2(int[] A, int B) {
         int n = A.length;
         int cnt = 0;
 
