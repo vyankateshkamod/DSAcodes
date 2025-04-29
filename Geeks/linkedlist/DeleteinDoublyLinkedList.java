@@ -16,52 +16,47 @@ class Node {
     }
 }
 
-public class DeleteKth {
+public class DeleteinDoublyLinkedList {
     public static void main(String[] args) {
         int[] arr = { 1, 2, 3, 4, 5 };
         Node head = convert(arr);
         print(head);
-        head = Delete(head, 4);
+        head = deleteNode(head, 9);
         print(head);
     }
 
-    public static Node Delete(Node head, int k) {
-        if (head == null || head.next == null) {
-            return null;
-        }
+    public static  Node deleteNode(Node head, int x) {
         int cnt = 1;
         Node curr = head;
         while (curr != null) {
-            if (cnt == k) {
+            if (cnt == x) {
                 break;
             }
-            curr = curr.next;
             cnt++;
+            curr = curr.next;
         }
-        if(curr == null) return null ;
-
+        if (curr == null)
+            return head;
         Node back = curr.prev;
         Node front = curr.next;
-        if (back == null && front == null) { // i.e single node
+        if (back == null && front == null) {
             return null;
-        } else if (back == null) { // head
-            Node temp = head;
-            head = temp.next;
-            temp.next = null; // basically calling delete head function
-            head.prev = null;
-            return head;
-        } else if (front == null) { // tail
+        } else if (back == null) {
+            head = front;
+            front.prev = null;
+            curr.next = null;
+            curr.prev = null;
+        } else if (front == null) {
             back.next = null;
-            curr.prev = null; // basically calling delete tail function
-            return head;
-        } else {
             curr.prev = null;
             curr.next = null;
+        } else {
             back.next = front;
             front.prev = back;
-            return head;
+            curr.prev = null;
+            curr.next = null;
         }
-
+        return head;
     }
 
     public static Node convert(int[] arr) {

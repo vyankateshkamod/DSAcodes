@@ -1,3 +1,4 @@
+
 class Node {
     int data;
     Node prev;
@@ -16,52 +17,27 @@ class Node {
     }
 }
 
-public class DeleteKth {
+public class DeleteNode {
     public static void main(String[] args) {
         int[] arr = { 1, 2, 3, 4, 5 };
         Node head = convert(arr);
         print(head);
-        head = Delete(head, 4);
+        Delete(head.next);
         print(head);
     }
 
-    public static Node Delete(Node head, int k) {
-        if (head == null || head.next == null) {
-            return null;
+    public static void Delete(Node curr){
+        Node back = curr.prev ;
+        Node front = curr.next ;
+        if(front == null){
+            back.next = null ;
         }
-        int cnt = 1;
-        Node curr = head;
-        while (curr != null) {
-            if (cnt == k) {
-                break;
-            }
-            curr = curr.next;
-            cnt++;
+        else{
+            back.next = front ;
+            front.prev = back ;
         }
-        if(curr == null) return null ;
-
-        Node back = curr.prev;
-        Node front = curr.next;
-        if (back == null && front == null) { // i.e single node
-            return null;
-        } else if (back == null) { // head
-            Node temp = head;
-            head = temp.next;
-            temp.next = null; // basically calling delete head function
-            head.prev = null;
-            return head;
-        } else if (front == null) { // tail
-            back.next = null;
-            curr.prev = null; // basically calling delete tail function
-            return head;
-        } else {
-            curr.prev = null;
-            curr.next = null;
-            back.next = front;
-            front.prev = back;
-            return head;
-        }
-
+        curr.next = null ;
+        curr.prev = null ;
     }
 
     public static Node convert(int[] arr) {
