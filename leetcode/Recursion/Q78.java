@@ -6,31 +6,27 @@ public class Q78 {
         List<List<Integer>> arr = new ArrayList<>() ;
         arr = subsets(new int[] {1,2,3}) ;
         for(List<Integer> set : arr){
-            System.out.print(set + " , ");
+            System.out.println(set);
         }
     }
 
-    // recursive
-    // tc : 2^n
-    // sc : 2^n * n
-    public static List<List<Integer>> list = new ArrayList<>() ;
-
+    // tc : 2^n * n
+    // sc : n(recursive) + 2^n * n (allSubsets)
     public static List<List<Integer>> subsets(int[] nums) {
-        List<Integer> temp = new ArrayList<>() ;
-        solve(nums , 0 , temp ) ;
-        return list ;
+        List<List<Integer>> allSubsets = new ArrayList<>();
+        List<Integer> subset = new ArrayList<>();
+        solve(0, nums, subset, allSubsets);
+        return allSubsets;
     }
 
-    public static void solve(int[] nums , int i , List<Integer> temp){
-        if(i >= nums.length){
-            list.add(new ArrayList<>(temp)) ;
-            return ;
+    public static void solve(int i, int[] nums, List<Integer> subset, List<List<Integer>> allSubsets) {
+        if (i == nums.length) {
+            allSubsets.add(new ArrayList<>(subset));
+            return;
         }
-        // Include nums[i]
-        temp.add(nums[i]) ;
-        solve(nums , i+1 , temp ) ;
-        // Exclude nums[i]
-        temp.remove(temp.size()-1) ;
-        solve(nums , i+1 , temp ) ;
+        subset.add(nums[i]);
+        solve(i + 1, nums, subset, allSubsets);
+        subset.remove(subset.size() - 1);
+        solve(i + 1, nums, subset, allSubsets);
     }
 }
