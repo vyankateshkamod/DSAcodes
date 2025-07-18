@@ -3,8 +3,20 @@ public class Q137 {
         System.out.println(singleNumber(new int[]{1,1,1,2,3,2,3,2,3,4}));
     }
 
+    // tc :  n
+    public static int singleNumber(int[] nums) {
+        int n = nums.length ;
+        int ones = 0 ;
+        int twos = 0 ;
+        for(int i = 0 ; i < n ; i++){
+            ones = (ones ^ nums[i]) & ~twos ;
+            twos = (twos ^ nums[i]) & ~ones ;
+        }
+        return ones ;
+    }
+
     // tc : 32 * n
-    public static  int singleNumber(int[] nums) {
+    public static  int singleNumber2(int[] nums) {
         int n = nums.length ;
         int result = 0 ;
         for(int i = 0 ; i < 32 ; i++){
